@@ -1260,3 +1260,67 @@ CREATE TABLE stud(
 );
 
 npm install express body-parser mysql
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Factorial using DOM</title>
+  <style>
+    .btn {
+      padding: 10px 20px;
+      background-color: teal;
+      color: white;
+      cursor: pointer;
+      margin: 10px;
+    }
+    .output {
+      font-weight: bold;
+      margin-top: 15px;
+    }
+  </style>
+</head>
+<body>
+
+  <button class="btn" onclick="createElements()">Create Elements</button>
+
+  <script>
+    function createElements() {
+      // Create Input Field
+      const input = document.createElement("input");
+      input.type = "number";
+      input.id = "numInput";
+      input.placeholder = "Enter a number";
+      document.body.appendChild(input);
+
+      // Create Button
+      const btn = document.createElement("button");
+      btn.textContent = "Find Factorial";
+      btn.className = "btn"
+      btn.onclick = findFactorial;
+      document.body.appendChild(btn);
+ 
+      // Create Result Paragraph
+      const para = document.createElement("p");
+      para.id = "result";
+      para.className = "output";
+      document.body.appendChild(para);
+    }
+
+    function findFactorial() {
+      const num = parseInt(document.getElementById("numInput").value);
+      if (isNaN(num) || num < 0) {
+        alert("Enter a valid non-negative number.");
+        return;
+      }
+
+      const result = factorial(num);
+      document.getElementById("result").textContent = Factorial of ${num} is ${result};
+    }
+
+    function factorial(n) {
+      return (n === 0 || n === 1) ? 1 : n * factorial(n - 1);
+    }
+  </script>
+
+</body>
+</html>
