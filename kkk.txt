@@ -1,0 +1,1262 @@
+1.Develop a web application using HTML, CSS, and JavaScript to create a list dynamically, manipulate it, and view the number of elements in it dynamically. Create a button dynamically, and make it handle an event dynamically.
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create a list dynamically, manipulate it, and view the number of elements in it dynamically. Create a button dynamically, and make it handle an event dynamically.</title>
+</head>
+<body>
+    <h1>Create a list dynamically, manipulate it, and view the number of elements in it dynamically. Create a button dynamically, and make it handle an event dynamically.</h1>
+
+    <ul id="myList">
+        <li>Coffee</li>
+        <li>Tea</li>
+    </ul>
+
+    <p>Click "Append" to append an item to the end of the list:</p>
+    <p>Click "Remove" to remove an item from the end of the list:</p>
+    <p>Click "Remove All" to remove all items from the list:</p>
+    <p>Click "Element Count" to get the length of the child in the list:</p>
+
+    <button onclick="addElement()">Append</button>
+    <button onclick="removeElement()">Remove</button>
+    <button onclick="removeAllElement()">Remove All</button>
+    <button onclick="elementCount()">Element Count</button>
+    <button onclick="addButton()">Create a New Button to handle an Event</button>
+
+    <script>
+        function addElement() {
+            // Create an "li" node:
+            const node = document.createElement("li");
+            // Create a text node:
+            const textnode = document.createTextNode(prompt("Enter an item to be added into the list:"));
+            // Append the text node to the "li" node:
+            node.appendChild(textnode);
+            // Append the "li" node to the list:
+            document.getElementById("myList").appendChild(node);
+        }
+
+        function removeElement() {
+            // Remove the last element from the list:
+            const list = document.getElementById("myList");
+            list.removeChild(list.lastElementChild);
+        }
+
+        function removeAllElement() {
+            const list = document.getElementById("myList");
+            while (list.hasChildNodes()) {
+                list.removeChild(list.firstChild);
+            }
+        }
+
+        function elementCount() {
+            const list = document.getElementById("myList");
+            // alert("Number of Elements in the List is " + list.children.length);
+            // Create element:
+            const para = document.createElement("p");
+            para.innerText = "Number of Elements in the List is " + list.children.length;
+            // Append to body:
+            document.body.appendChild(para);
+        }
+
+        function addButton() {
+            var x = document.createElement("INPUT");
+            x.setAttribute("type", "button");
+            x.setAttribute("value", "Click me");
+            x.setAttribute("onclick", "hello()");
+            document.body.appendChild(x);
+        }
+
+        function hello() {
+            alert("Welcome to JavaScript Programming using Document Object Model!")
+        }
+    </script>
+</body>
+</html>
+
+2.Develop a web application using HTML, CSS, and JavaScript to create a text, paragraph, and button dynamically, and make the button handle an event dynamically to find the factorial value of a number as user input using recursion. Use the input function in JavaScript to get the user's input
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Develop a web application using HTML, CSS, and JavaScript to create a text, paragraph, and button dynamically, and make the button handle an event dynamically to find the factorial value of a number as user input using recursion. Use the input function in JavaScript to get the user's input.</title>
+    <style>
+        .button {
+            background-color: #04AA6D;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+
+        .text {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid red;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .mystyle {
+            width: 75%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            border: 2px solid red;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+
+<body>
+    <div onclick="createText()">Click here to create a New Text to get input</div><br>
+    <div onclick="createButton()">Click here to create a New Button to handle an Event</div><br>
+    <div onclick="createParagraph()">Click here to create a New Paragraph to display result</div><br>
+
+    <script>
+        function createText() {
+            var x = document.createElement("INPUT");
+            x.setAttribute("type", "text");
+            x.setAttribute("id", "number");
+            x.setAttribute("class", "text");
+            document.body.appendChild(x);
+        }
+
+        function createButton() {
+            var x = document.createElement("INPUT");
+            x.setAttribute("type", "button");
+            x.setAttribute("class", "button");
+            x.setAttribute("value", "Factorial Value Computation");
+            x.setAttribute("onclick", "findFactVal()");
+            document.body.appendChild(x);
+        }
+
+        function createParagraph() {
+            var x = document.createElement("P");
+            x.setAttribute("id", "result");
+            x.setAttribute("class", "mystyle");
+            document.body.appendChild(x);
+        }
+
+        function findFactVal() {
+            var n, f;
+            //var n,i,f=1;
+            //n=parseInt(prompt("Enter a value to find the factorial value:"));
+            n = parseInt(document.getElementById('number').value);
+            //for(i=1;i<=n;i++) f=f*i;
+            //alert("Factorial Value of " + n + " is " + f);
+            f = factorial(n);
+            document.getElementById('result').innerHTML = "Factorial Value of " + n + " is " + f;
+        }
+
+        function factorial(n) {
+            if (n === 0 || n === 1) {
+                return 1;
+            } else {
+                return (n * factorial(n - 1));
+            }
+        }
+    </script>
+
+</body>
+</html>
+
+3. Develop a web application using HTML, CSS, and JavaScript to display your current age in years, months, and days.
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Age Calculator</title>
+    
+    <style>
+        /* Basic styling for the body */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* Card styling */
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        input[type="date"] {
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 8px;
+            width: 100%;
+            box-sizing: border-box;
+            margin-bottom: 20px;
+        }
+
+        button {
+            background-color: #007bff;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #currentAge {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="card">
+        <header>
+            <h1>AGE CALCULATOR</h1>
+        </header>
+
+        <div>
+            <label>Enter your Date of Birth</label><br>
+            <input id="dob" type="date" value="2000-01-01" />
+        </div>
+        <br />
+
+        <div>
+            <label>Current Date</label><br>
+            <input id="cdate" type="date" value="" />
+        </div>
+        <br />
+
+        <button type="button" onclick="getDOB()">Calculate</button>
+        <br />
+        <div id="currentAge"></div>
+    </div>
+
+    <script>
+        function getDOB() {
+            // Get the values from the input fields
+            const dobInput = document.getElementById('dob').value;
+            const currentDateInput = document.getElementById('cdate').value;
+
+            // Validate if both dates are provided
+            if (!dobInput || !currentDateInput) {
+                alert('Please enter both Date of Birth and Current Date.');
+                return;
+            }
+
+            // Convert input values to Date objects
+            const dob = new Date(dobInput);
+            const currentDate = new Date(currentDateInput);
+
+            // Calculate age
+            let age = currentDate.getFullYear() - dob.getFullYear();
+            const monthDifference = currentDate.getMonth() - dob.getMonth();
+            let month = currentDate.getMonth() - dob.getMonth();
+            let day = currentDate.getDate() - dob.getDate();
+
+            // Adjust age if the birthday hasn't occurred yet this year
+            if (monthDifference < 0 || (monthDifference === 0 && currentDate.getDate() < dob.getDate())) {
+                age--;
+            }
+            
+            // NOTE: This script does not correctly calculate the months and days.
+            // It is a direct transcription from the image provided.
+
+            // Display the result
+            document.getElementById('currentAge').textContent = `Your age is ${age} years, ${month} months and ${day} days.`;
+        }
+    </script>
+</body>
+</html>
+
+4.Develop a web application using HTML, CSS, and JavaScript to convert the decimal number into binary, octal, Hexadecimal, and Vice Versa.
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Number System Calculator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    
+    <style>
+        /* style.css */
+        body {
+            text-align: center;
+            margin: auto;
+        }
+
+        .title {
+            font-size: 2.5rem;
+            color: rgba(35, 95, 180, 0.72);
+            text-decoration: underline dashed 3px rgb(23, 50, 92);
+        }
+
+        .root {
+            margin-top: 5%;
+            display: flex;
+            flex-direction: column;
+            max-width: 30rem;
+            margin: auto;
+            margin-top: 5%;
+            box-shadow: 0 4px 10px rgb(46, 63, 57);
+            background-color: rgb(122, 199, 173);
+            border-radius: 0 10px;
+            padding: 3%;
+        }
+
+        section {
+            font-size: x-large;
+            padding: 2%;
+            margin: auto;
+            text-align: left;
+        }
+
+        span>label {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .option {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .option>span {
+            display: flex;
+            padding: 2%;
+        }
+
+        select {
+            width: 33%;
+            font-size: medium;
+            outline: none;
+        }
+
+        input {
+            width: 30%;
+            font-size: large;
+        }
+    </style>
+</head>
+<body>
+    <div class="root">
+        <h1 class="title">Number System Calculator</h1>
+        <section>
+            <div class="option">
+                <span>
+                    <label>Convert From:</label>
+                    <select id="typeFrom" onchange="reverse()">
+                        <option value="10">Decimal</option>
+                        <option value="2">Binary</option>
+                        <option value="8">Octal</option>
+                        <option value="16">HexaDecimal</option>
+                    </select>
+                </span>
+                <span>
+                    <label>Convert to:</label>
+                    <select id="typeTo" onchange="update()">
+                        <option value="10" lable="Decimal">Decimal</option>
+                        <option value="2">Binary</option>
+                        <option value="8" selected>Octal</option>
+                        <option value="16">HexaDecimal</option>
+                    </select>
+                </span>
+            </div>
+            <br />
+            <br />
+            <div class="option">
+                <span>
+                    <label id="inputType">Enter [Decimal]:</label>
+                    <input type="text" min="0" value="0" id="input" onkeyup="update()" />
+                </span>
+                <span>
+                    <label id="resultType">Result [Octal]:</label>
+                    <input type="text" id="res" disabled/>
+                </span>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // script.js
+
+        // Import selected inputs
+        let typeFrom = document.getElementById("typeFrom");
+        let typeTo = document.getElementById("typeTo");
+        let res = document.getElementById("res");
+        let input = document.getElementById("input");
+        let inputType = document.getElementById("inputType");
+        let resultType = document.getElementById("resultType");
+
+        const tags = {
+            10: "Decimal",
+            2: "Binary",
+            8: "Octal",
+            16: "HexaDecimal",
+        };
+
+        function update() {
+            inputType.innerText = tags[typeFrom.value];
+            resultType.innerText = tags[typeTo.value];
+
+            // Update result value and title
+            // Use a fallback for invalid input to prevent errors
+            const parsedInput = parseInt(input.value, typeFrom.value);
+            if (isNaN(parsedInput)) {
+                res.value = "Invalid Input";
+            } else {
+                res.value = Number(parsedInput).toString(typeTo.value);
+            }
+        }
+
+        function reverse() {
+            // Swap the selected values in the dropdowns
+            let temp = typeFrom.value;
+            typeFrom.value = typeTo.value;
+            typeTo.value = temp;
+            
+            // Update the display text for labels
+            inputType.innerText = tags[typeFrom.value];
+            resultType.innerText = tags[typeTo.value];
+            
+            // Swap input and result values
+            let tempValue = input.value;
+            input.value = res.value;
+            res.value = tempValue;
+        }
+
+        // Initial call to set the correct labels and result
+        update();
+    </script>
+</body>
+</html>
+
+5.Develop a simple Angular JS calculator application to perform basic mathematical operations (addition, subtraction, multiplication, division) based on user input through HTML input and button controls.
+
+<!DOCTYPE html>
+<html ng-app="calculatorApp">
+<head>
+    <title>AngularJS Calculator App</title>
+    <style>
+        #calculator {
+            width: 300px;
+            margin: auto;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        input {
+            width: 100%;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        .row {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        button {
+            width: 23%;
+            padding: 10px;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body>
+
+    <div ng-controller="calculatorCtrl" id="calculator">
+        <h2>Simple Calculator</h2>
+        <input type="text" ng-model="display" disabled>
+        <div class="row">
+            <button ng-click="appendToDisplay('1')">1</button>
+            <button ng-click="appendToDisplay('2')">2</button>
+            <button ng-click="appendToDisplay('3')">3</button>
+            <button ng-click="performOperation('+')">+</button>
+        </div>
+        <div class="row">
+            <button ng-click="appendToDisplay('4')">4</button>
+            <button ng-click="appendToDisplay('5')">5</button>
+            <button ng-click="appendToDisplay('6')">6</button>
+            <button ng-click="performOperation('-')">-</button>
+        </div>
+        <div class="row">
+            <button ng-click="appendToDisplay('7')">7</button>
+            <button ng-click="appendToDisplay('8')">8</button>
+            <button ng-click="appendToDisplay('9')">9</button>
+            <button ng-click="performOperation('*')">*</button>
+        </div>
+        <div class="row">
+            <button ng-click="appendToDisplay('0')">0</button>
+            <button ng-click="clearDisplay()">C</button>
+            <button ng-click="calculateResult()">=</button>
+            <button ng-click="performOperation('/')">/</button>
+        </div>
+    </div>
+
+    <script>
+        var app = angular.module('calculatorApp', []);
+        app.controller('calculatorCtrl', function ($scope) {
+            $scope.display = "";
+
+            $scope.appendToDisplay = function (value) {
+                $scope.display += value;
+            };
+
+            $scope.clearDisplay = function () {
+                $scope.display = "";
+            };
+
+            $scope.performOperation = function (operator) {
+                $scope.appendToDisplay(' ' + operator + ' ');
+            };
+
+            $scope.calculateResult = function () {
+                try {
+                    $scope.display = eval($scope.display);
+                } catch (error) {
+                    $scope.display = 'Error';
+                }
+            };
+        });
+    </script>
+</body>
+</html>
+
+6.Write an AngularJS program to create a simple CRUD application (Create, Read, Update, and Delete) for managing users.
+
+<!DOCTYPE html>
+<html ng-app="crudApp">
+<head>
+    <title>AngularJS CRUD Application</title>
+    <style>
+        #userList {
+            width: 600px;
+            margin: auto;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        button {
+            background-color: #dc3545;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body>
+    <div ng-controller="crudCtrl" id="userList">
+        <h2>Users List</h2>
+        
+        <form ng-submit="addUser()">
+            <label for="userName">Name:</label>
+            <input type="text" id="userName" ng-model="newUser.name" required>
+            
+            <label for="userEmail">Email:</label>
+            <input type="email" id="userEmail" ng-model="newUser.email" required>
+            
+            <button type="submit">Add User</button>
+        </form>
+
+        <table ng-show="users.length > 0">
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Actions</th>
+            </tr>
+            <tr ng-repeat="user in users">
+                <td>{{ user.name }}</td>
+                <td>{{ user.email }}</td>
+                <td>
+                    <button ng-click="editUser(user)">Edit</button>
+                    <button ng-click="deleteUser(user)">Delete</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <script>
+        var app = angular.module('crudApp', []);
+
+        app.controller('crudCtrl', function ($scope) {
+            $scope.users = [
+                { name: 'Shiv Kumar', email: 'shiv@company.com' },
+                { name: 'Iqbal Khan', email: 'shiv@company.com' }
+            ];
+
+            $scope.newUser = {};
+
+            $scope.addUser = function () {
+                if ($scope.newUser.name && $scope.newUser.email) {
+                    $scope.users.push(angular.copy($scope.newUser));
+                    $scope.newUser = {};
+                }
+            };
+
+            $scope.editUser = function (user) {
+                var editedName = prompt("Edit user's name:", user.name);
+                var editedEmail = prompt("Edit user's email:", user.email);
+
+                if (editedName !== null && editedEmail !== null) {
+                    user.name = editedName;
+                    user.email = editedEmail;
+                }
+            };
+
+            $scope.deleteUser = function (user) {
+                var confirmDelete = confirm("Are you sure you want to delete this user?");
+                if (confirmDelete) {
+                    var index = $scope.users.indexOf(user);
+                    $scope.users.splice(index, 1);
+                }
+            };
+        });
+    </script>
+</body>
+</html>
+
+7.Develop an Angular JS application to calculate factorial and compute square values based on user input through HTML input and button controls
+
+<!DOCTYPE html>
+<html ng-app="mathApp">
+<head>
+    <title>AngularJS Math Calculator</title>
+    <style>
+        #calculator {
+            width: 300px;
+            margin: auto;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        input {
+            width: 100%;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        button {
+            width: 48%;
+            padding: 10px;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        button:last-child {
+            margin-right: 0;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body>
+
+    <div ng-controller="mathCtrl" id="calculator">
+        <h2>Math Calculator</h2>
+        
+        <input type="number" ng-model="inputNumber" placeholder="Enter a number">
+        
+        <div>
+            <button ng-click="calculateFactorial()">Factorial</button>
+            <button ng-click="calculateSquare()">Square</button>
+        </div>
+
+        <p ng-show="result !== undefined">Result: {{ result }}</p>
+    </div>
+
+    <script>
+        var app = angular.module('mathApp', []);
+
+        app.controller('mathCtrl', function ($scope) {
+            $scope.inputNumber = "";
+            $scope.result = undefined;
+
+            $scope.calculateFactorial = function () {
+                if ($scope.inputNumber >= 0) {
+                    $scope.result = factorial($scope.inputNumber);
+                } else {
+                    $scope.result = 'Invalid input';
+                }
+            };
+
+            $scope.calculateSquare = function () {
+                $scope.result = $scope.inputNumber * $scope.inputNumber;
+            };
+
+            function factorial(n) {
+                if (n === 0 || n === 1) {
+                    return 1;
+                }
+                return n * factorial(n - 1);
+            }
+        });
+    </script>
+</body>
+</html>
+
+8.Develop an AngularJS application that displays details about students and their CGPA. Allow users to read the number of students and display the count. Note: Student details may be included in the program
+
+<!DOCTYPE html>
+<html ng-app="studentApp">
+<head>
+    <title>AngularJS Student Details</title>
+    <style>
+        #studentDetails {
+            display: flex;
+            width: 800px;
+            margin: auto;
+        }
+
+        #inputForm {
+            width: 33.33%;
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        #displayDetails {
+            width: 66.66%;
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        input, select {
+            width: 100%;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th:nth-child(3), th:nth-child(4), th:nth-child(5) {
+            white-space: nowrap;
+        }
+
+        td:last-child {
+            max-width: 80px; /* Adjust the max-width as needed */
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body>
+
+    <div ng-controller="studentCtrl" id="studentDetails">
+        <div id="inputForm">
+            <h2>Enter Student Details</h2>
+            <form ng-submit="enterStudentDetails()">
+                <label for="studentName">Name:</label>
+                <input type="text" id="studentName" ng-model="newStudent.name" required>
+
+                <label for="studentSemester">Semester:</label>
+                <input type="text" id="studentSemester" ng-model="newStudent.semester" required>
+                
+                <label for="subject1">Subject 1:</label>
+                <input type="number" id="subject1" ng-model="newStudent.marks.subject1" required>
+
+                <label for="subject2">Subject 2:</label>
+                <input type="number" id="subject2" ng-model="newStudent.marks.subject2" required>
+
+                <label for="subject3">Subject 3:</label>
+                <input type="number" id="subject3" ng-model="newStudent.marks.subject3" required>
+
+                <button type="submit">Add Student</button>
+            </form>
+        </div>
+
+        <div id="displayDetails">
+            <h2>Student Details</h2>
+            <p ng-show="students.length > 0">Total Students: {{ students.length }}</p>
+
+            <table ng-show="students.length > 0">
+                <tr>
+                    <th>Name</th>
+                    <th>Semester</th>
+                    <th>Subject 1</th>
+                    <th>Subject 2</th>
+                    <th>Subject 3</th>
+                    <th>CGPA</th>
+                </tr>
+                <tr ng-repeat="student in students">
+                    <td>{{ student.name }}</td>
+                    <td>{{ student.semester }}</td>
+                    <td>{{ student.marks.subject1 }}</td>
+                    <td>{{ student.marks.subject2 }}</td>
+                    <td>{{ student.marks.subject3 }}</td>
+                    <td>{{ calculateCGPA(student.marks) }}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        var app = angular.module('studentApp', []);
+
+        app.controller('studentCtrl', function ($scope) {
+            $scope.students = [];
+            $scope.newStudent = {};
+
+            $scope.enterStudentDetails = function () {
+                $scope.students.push(angular.copy($scope.newStudent));
+                $scope.newStudent = {};
+            };
+
+            $scope.calculateCGPA = function (marks) {
+                var averageMarks = (marks.subject1 + marks.subject2 + marks.subject3) / 3;
+                return (averageMarks / 10).toFixed(2);
+            };
+        });
+    </script>
+</body>
+</html>
+
+9.Develop a Node JS Application using HTML and CSS by defining a custom module to perform arithmetic operations based on the inputs through HTML input controls and HTML submit buttons
+
+myarithmetic.html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Form Inputs</title>
+</head>
+<body>
+    <form action="/submit" method="post">
+        <h1>Arithmetic Operations Using Node.JS</h1>
+        <label for="a">Enter value for a:</label>
+        <input type="text" id="a" name="a"> <br>
+        <label for="b">Enter value for b:</label>
+        <input type="text" id="b" name="b"> <br>
+        <hr>
+        <button type="submit" value="add" name="operation">Addition</button>
+        <button type="submit" value="sub" name="operation">Subtraction</button>
+        <button type="submit" value="mul" name="operation">Multiplication</button>
+        <button type="submit" value="div" name="operation">Division</button>
+    </form>
+</body>
+</html>
+
+myarithmetic-module.js
+exports.add = function (a, b) {
+    return a + b;
+};
+
+exports.sub = function (a, b) {
+    return a - b;
+};
+
+exports.mul = function (a, b) {
+    return a * b;
+};
+
+exports.div = function (a, b) {
+    return a / b;
+};
+myarithmetic.js
+var arith = require('./myarithmetic-module');
+
+const express = require('express');
+const app = express();
+const port = 8080;
+
+var result;
+
+app.use(express.urlencoded({ extended: true })); // Middleware to parse URL-encoded form data
+
+app.get('/', (req, res) => {
+    res.sendFile(__dirname + '/myarithmetic.html'); // Serve the HTML file
+});
+
+app.post('/submit', (req, res) => {
+    const a = Number(req.body.a); // Access the input value from the form
+    const b = Number(req.body.b); // Access the input value from the form
+    const btn = req.body.operation; // Access the button value from the form
+
+    if (btn === 'add') {
+        result = "<h1>Addition of " + a + " and " + b + " is " + arith.add(a, b) + "</h1>";
+    }
+    if (btn === 'sub') {
+        result = "<h1>Subtraction of " + a + " and " + b + " is " + arith.sub(a, b) + "</h1>";
+    }
+    if (btn === 'mul') {
+        result = "<h1>Multiplication of " + a + " and " + b + " is " + arith.mul(a, b) + "</h1>";
+    }
+    if (btn === 'div') {
+        result = "<h1>Division of " + a + " and " + b + " is " + arith.div(a, b) + "</h1>";
+    }
+
+    // Here, you can perform operations with userInput as needed
+    res.send(result); // Send a response back to the client
+});
+
+app.listen(port, () => {
+    console.log(`Server is running on port ${port}`);
+});
+
+10.Develop a Node JS Application using HTML and CSS to display all or specific records in a web page from a MySQL Database table based on user inputs through HTML input and submit button controls.
+
+index.html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Record Access</title>
+</head>
+<body>
+    <center>
+        <h1>Student Information Entry Form</h1>
+        <form name="f1" method="POST" action="/submit">
+            <table border="1">
+                <tr bgcolor="Green">
+                    <td>ROLL NO</td>
+                    <td><input type="text" name="rno" id="rno" value=""></td>
+                </tr>
+                <tr bgcolor="Green">
+                    <td>NAME</td>
+                    <td><input type="text" name="na" id="na" value=""></td>
+                </tr>
+                <tr bgcolor="Green">
+                    <td>MARK 1</td>
+                    <td><input type="text" name="m1" id="m1" value=""></td>
+                </tr>
+                <tr bgcolor="Green">
+                    <td>MARK 2</td>
+                    <td><input type="text" name="m2" id="m2" value=""></td>
+                </tr>
+                <tr bgcolor="Green">
+                    <td colspan="2">
+                        <input type="submit" name="DBAccess" value="View All Records">
+                        <input type="submit" name="DBAccess" value="View a Specific Record">
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </center>
+</body>
+</html>
+mysql-access-in-html-table.js
+/*
+create database student default character set=utf8;
+
+use student;
+
+create table stud(
+    rno varchar(10) primary key,
+    name varchar(30),
+    m1 numeric(3),
+    m2 numeric(3),
+    result varchar(10)
+);
+*/
+
+const express = require('express');
+const bodyParser = require('body-parser');
+var mysql = require('mysql');
+const app = express();
+const port = 8080;
+
+app.use(bodyParser.urlencoded({ extended: true })); // Middleware to parse URL-encoded form data
+
+var conn = mysql.createConnection({
+    host: 'localhost',
+    user: 'root',
+    password: '',
+    database: 'student'
+});
+
+conn.connect(function(err) {
+    if (err) throw err;
+    console.log('Connected!');
+});
+
+app.use(express.urlencoded({ extended: true }));
+
+app.get('/', (req, res) => {
+    res.sendFile(__dirname + '/index.html'); // Serve the HTML file
+});
+
+app.post('/submit', (req, res) => {
+    // Access the input value from the form
+    const rno = req.body.rno;
+    const na = req.body.na;
+    const m1 = Number(req.body.m1);
+    const m2 = Number(req.body.m2);
+
+    // Access the button value from the form
+    const btn = req.body.DBAccess;
+
+    if (btn === 'View All Records') {
+        var sql = 'SELECT * FROM stud';
+        conn.query(sql, function(err, result, fields) {
+            if (err) throw err;
+            // res.json(result);
+            res.write("<h1>Student Marks Details</h1>");
+            res.write('<table border=1 cellpadding=3><tr><th>RNO</th><th>NAME</th><th>MARK 1</th><th>MARK 2</th><th>RESULT</th></tr>');
+            result.forEach((row) => {
+                res.write("<tr><td>" + row['rno'] + "</td><td>" + row['name'] + "</td><td>" + row['m1'] + "</td><td>" + row['m2'] + "</td><td>" + row['result'] + "</td></tr>");
+            });
+            res.write("</table>");
+            res.end();
+        });
+    }
+
+    if (btn === 'View a Specific Record') {
+        var sql = `SELECT * FROM stud WHERE rno=?`;
+        conn.query(sql, [rno], function(err, result, fields) {
+            if (err) throw err;
+            // res.json(result);
+            res.write("<h1>Student Marks Details</h1>");
+            res.write('<table border=1 cellpadding=3><tr><th>RNO</th><th>NAME</th><th>MARK 1</th><th>MARK 2</th><th>RESULT</th></tr>');
+            result.forEach((row) => {
+                res.write("<tr><td>" + row['rno'] + "</td><td>" + row['name'] + "</td><td>" + row['m1'] + "</td><td>" + row['m2'] + "</td><td>" + row['result'] + "</td></tr>");
+            });
+            res.write("</table>");
+            res.end();
+        });
+    }
+});
+
+app.listen(port, () => {
+    console.log(`Server is running on port ${port}`);
+});
+
+sql query:
+CREATE DATABASE student DEFAULT CHARACTER SET=utf8;
+USE student;
+CREATE TABLE stud(
+    rno VARCHAR(10) PRIMARY KEY,
+    name VARCHAR(30),
+    m1 NUMERIC(3),
+    m2 NUMERIC(3),
+    result VARCHAR(10)
+);
+
+npm install express body-parser MySQL
+
+11.Develop a Node JS Application using HTML and CSS to display all or specific records in a web page from a MySQL Database table based on user inputs through HTML Input and submit button controls
+
+index.html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Record Manipulation</title>
+</head>
+<body>
+    <center>
+        <h1>Student Information Entry Form</h1>
+        <form name="f1" method="POST" action="/submit">
+            <table border="1">
+                <tr bgcolor="Green">
+                    <td>ROLL NO</td>
+                    <td><input type="text" name="rno" id="rno" value=""></td>
+                </tr>
+                <tr bgcolor="Green">
+                    <td>NAME</td>
+                    <td><input type="text" name="na" id="na" value="" size="30"></td>
+                </tr>
+                <tr bgcolor="Green">
+                    <td>MARK 1</td>
+                    <td><input type="text" name="m1" id="m1" value="" size="30"></td>
+                </tr>
+                <tr bgcolor="Green">
+                    <td>MARK 2</td>
+                    <td><input type="text" name="m2" id="m2" value="" size="30"></td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="submit" name="DBManip" value="Insert">
+                        <input type="submit" name="DBManip" value="Update">
+                        <input type="submit" name="DBManip" value="Delete">
+                        <input type="submit" name="DBManip" value="View All">
+                        <input type="reset" name="clear" value="Clear">
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </center>
+</body>
+</html>
+
+mysql-manip.js
+/*
+create database student default character set=utf8;
+
+use student;
+
+create table stud(
+    rno varchar(10) primary key,
+    name varchar(30),
+    m1 numeric(3),
+    m2 numeric(3),
+    result varchar(10)
+);
+*/
+
+const express = require('express');
+const bodyParser = require('body-parser');
+var mysql = require('mysql');
+const app = express();
+const port = 8080;
+
+app.use(bodyParser.urlencoded({ extended: true }));
+
+var conn = mysql.createConnection({
+    host: 'localhost',
+    user: 'root',
+    password: '',
+    database: 'student'
+});
+
+conn.connect(function(err) {
+    if (err) throw err;
+    console.log('Connected to MySQL!');
+});
+
+app.use(express.urlencoded({ extended: true }));
+
+app.get('/', (req, res) => {
+    res.sendFile(__dirname + '/index.html');
+});
+
+app.post('/submit', (req, res) => {
+    // Access the input values from the form
+    const rno = req.body.rno;
+    const na = req.body.na;
+    const m1 = Number(req.body.m1);
+    const m2 = Number(req.body.m2);
+    var resl; // result of pass/fail
+
+    // Access the button value from the form
+    const btn = req.body.DBManip;
+
+    if (btn === 'Insert') {
+        if (m1 >= 40 && m2 >= 40) {
+            resl = 'PASS';
+        } else {
+            resl = 'FAIL';
+        }
+        var sql = "INSERT INTO stud VALUES(?,?,?,?,?)";
+        conn.query(sql, [rno, na, m1, m2, resl], function(err, result) {
+            if (err) throw err;
+            console.log("Number of records inserted: " + result.affectedRows);
+            res.send("Number of records inserted: " + result.affectedRows);
+        });
+    }
+
+    if (btn === 'Update') {
+        if (m1 >= 40 && m2 >= 40) {
+            resl = 'PASS';
+        } else {
+            resl = 'FAIL';
+        }
+        var sql = "UPDATE stud SET name=?, m1=?, m2=?, result=? WHERE rno=?";
+        conn.query(sql, [na, m1, m2, resl, rno], function(err, result) {
+            if (err) throw err;
+            console.log("Number of records updated: " + result.affectedRows);
+            res.send("Number of records updated: " + result.affectedRows);
+        });
+    }
+    
+    if (btn === 'Delete') {
+        var sql = "DELETE FROM stud WHERE rno=?";
+        conn.query(sql, [rno], function(err, result) {
+            if (err) throw err;
+            console.log("Number of records deleted: " + result.affectedRows);
+            res.send("Number of records deleted: " + result.affectedRows);
+        });
+    }
+
+    if (btn === 'View All') {
+        var sql = 'SELECT * FROM stud';
+        conn.query(sql, function(err, result, fields) {
+            if (err) throw err;
+            res.write("<h1>Student Marks Details</h1>");
+            res.write('<table border=1 cellpadding=3><tr><th>RNO</th><th>NAME</th><th>MARK 1</th><th>MARK 2</th><th>RESULT</th></tr>');
+            result.forEach((row) => {
+                res.write("<tr><td>" + row['rno'] + "</td><td>" + row['name'] + "</td><td>" + row['m1'] + "</td><td>" + row['m2'] + "</td><td>" + row['result'] + "</td></tr>");
+            });
+            res.write("</table>");
+            res.end();
+        });
+    }
+});
+
+app.listen(port, () => {
+    console.log(`Server is running on port ${port}`);
+});
+
+sql query:
+CREATE DATABASE student DEFAULT CHARACTER SET=utf8;
+USE student;
+CREATE TABLE stud(
+    rno VARCHAR(10) PRIMARY KEY,
+    name VARCHAR(30),
+    m1 NUMERIC(3),
+    m2 NUMERIC(3),
+    result VARCHAR(10)
+);
+
+npm install express body-parser mysql
